@@ -1,5 +1,5 @@
 import numpy as np
-from abc import ABC
+from abc import ABC, abstractmethod
 
 from typing import Tuple, Optional, List
 
@@ -14,10 +14,12 @@ class MultiArmedBandit(ABC):
         self.action_values = np.zeros(num_arms)
         self.optimal = 0
 
+    @abstractmethod
     def reset(self) -> None:
         self.action_values = np.zeros(self.num_arms)
         self.optimal = 0
 
+    @abstractmethod
     def pull(self, action: int) -> Tuple[int, bool]:
         return 0, True
 
