@@ -1,8 +1,8 @@
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-from bandit import MultiArmedBandit
-from agent import Agent
+from multiarmed_bandit.bandit import MultiArmedBandit
+from multiarmed_bandit.agent import Agent
 
 from typing import List, Tuple
 
