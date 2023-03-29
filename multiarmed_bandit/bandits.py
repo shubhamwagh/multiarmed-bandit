@@ -16,12 +16,11 @@ class MultiArmedBandit(ABC):
 
     @abstractmethod
     def reset(self) -> None:
-        self.action_values = np.zeros(self.num_arms)
-        self.optimal = 0
+        raise NotImplementedError
 
     @abstractmethod
     def pull(self, action: int) -> Tuple[int, bool]:
-        return 0, True
+        raise NotImplementedError
 
 
 class GaussianBandit(MultiArmedBandit):
