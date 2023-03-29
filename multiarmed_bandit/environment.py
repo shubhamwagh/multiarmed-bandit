@@ -1,6 +1,8 @@
 import numpy as np
-from multiarmed_bandit.bandit import MultiArmedBandit
-from multiarmed_bandit.agent import Agent
+import seaborn as sns
+import matplotlib.pyplot as plt
+from bandit import MultiArmedBandit
+from agent import Agent
 
 from typing import List, Tuple
 
@@ -33,3 +35,20 @@ class Environment:
                         optimal[t, i] += 1
 
         return scores / experiments, optimal / experiments
+
+    def plot_results(self, scores: np.ndarray, optimal: np.ndarray):
+        sns.set_style('white')
+        sns.set_context('talk')
+        plt.subplot(2, 1, 1)
+        plt.title(self.label)
+        plt.plot(scores)
+        plt.ylabel('Average Reward')
+        plt.legend(self.agents, loc=4)
+        plt.subplot(2, 1, 2)
+        plt.plot(optimal * 100)
+        plt.ylim(0, 100)
+        plt.ylabel('% Optimal Action')
+        plt.xlabel('Time Step')
+        plt.legend(self.agents, loc=4)
+        sns.despine()
+        plt.show()
