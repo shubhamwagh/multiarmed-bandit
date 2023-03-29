@@ -1,7 +1,7 @@
 import numpy as np
 from abc import ABC, abstractmethod
 
-from typing import Tuple, Optional, List
+from typing import Tuple, Optional, List, Union
 
 
 class MultiArmedBandit(ABC):
@@ -19,7 +19,7 @@ class MultiArmedBandit(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def pull(self, action: int) -> Tuple[int, bool]:
+    def pull(self, action: int) -> Tuple[Union[int, float], bool]:
         raise NotImplementedError
 
 
@@ -39,7 +39,7 @@ class GaussianBandit(MultiArmedBandit):
         self.action_values = np.random.normal(self.mu, self.sigma, self.num_arms)
         self.optimal = np.argmax(self.action_values)
 
-    def pull(self, action: int) -> Tuple[int, bool]:
+    def pull(self, action: int) -> Tuple[float, bool]:
         return (np.random.normal(self.action_values[action]),
                 action == self.optimal)
 
